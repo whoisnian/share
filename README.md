@@ -1,5 +1,5 @@
 # share
-Make a website with PHP to share files. 
+Upload and download files with PHP.
 ## Address
 [https://whitewings.cn/share/](https://whitewings.cn/share/)
 
