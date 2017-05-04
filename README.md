@@ -4,6 +4,7 @@ Upload and download files with PHP.
 * `.php` and `.html` files are not allowed to be uploaded.
 * `sudo chmod -R 777 upload` to enable people to upload files.
 * every file's name should be different from others.
+* `php.ini` need to be changed in order to upload large files.
 
 ## Address
 [https://whitewings.cn/share/](https://whitewings.cn/share/)
