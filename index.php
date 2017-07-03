@@ -51,43 +51,45 @@ echo '
 $dir = 'upload';
 if(is_dir($dir)){
 	if($dh = opendir($dir)){
-		echo '	
-			<br/>
-			<div>
-                <table class="card">';
 		while(($file = readdir($dh))){
 			if($file == "."||$file == ".."||$file == "index.html")continue;
 			$key = filemtime("upload/$file");
 			$files[$key] = $file; 
 		}
-		krsort($files);
-		foreach($files as $file){
-			$Link = '<a class="maxlen" href="upload/'.$file.'">'.$file.'</a>';
-			$Size = filesize("upload/$file");
-			$SizeKiB = round($Size / 1024, 2);
-			$SizeMiB = round($Size / 1024 / 1024, 2);
-			if($SizeMiB > 1)
-				$Size = $SizeMiB.' M';
-			else
-				$Size = $SizeKiB.' K';
-			$Time = date("Y-m-d H:i", filemtime("upload/$file"));
-			$Download = '<a href="upload/'.$file.'" download="'.$file.'">下载</a>';
-			$Delete = '
+		if(!empty($files)){
+			echo '	
+			<br/>
+			<div>
+                <table class="card">';
+			krsort($files);
+			foreach($files as $file){
+				$Link = '<a class="maxlen" href="upload/'.$file.'">'.$file.'</a>';
+				$Size = filesize("upload/$file");
+				$SizeKiB = round($Size / 1024, 2);
+				$SizeMiB = round($Size / 1024 / 1024, 2);
+				if($SizeMiB > 1)
+					$Size = $SizeMiB.' M';
+				else
+					$Size = $SizeKiB.' K';
+				$Time = date("Y-m-d H:i", filemtime("upload/$file"));
+				$Download = '<a href="upload/'.$file.'" download="'.$file.'">下载</a>';
+				$Delete = '
 					<form action="index.php" method="post">
 						<input type="hidden" name="name" value="'.$file.'">
 						<label><a style="cursor:pointer">删除</a><input style="display:none" type="submit" name="submit" value="delete"></label>
 					</form>';
-			echo'
+				echo'
 					<tr>
 						<td style="border-bottom:1px solid black">'.$Size.'<br/>'.$Link.'</td>
 						<td style="border-bottom:1px solid black;text-align:center">'.$Time.'</td>
 						<td style="border-bottom:1px solid black;text-align:center">'.$Download.'</td>
 						<td style="border-bottom:1px solid black;text-align:center">'.$Delete.'</td>
 					</tr>';
-		}
-		echo '
+			}
+			echo '
 				</table>
 			</div>';
+		}
 		closedir($dh);
 	}
 }
