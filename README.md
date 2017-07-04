@@ -5,7 +5,7 @@ Upload and download files with PHP.
 * `.php` and `.html` files are not allowed to be uploaded. You can allow them in `Includes/function.php`.
 * `sudo chmod -R 777 upload` to enable people to upload files.
 * Every file's name should be different from others.
-* You can disable php engine in `upload` directory by add this to `httpd.conf`. And don't forget to change the directory to yours.
+* You can disable php engine in `upload` directory by adding this to `httpd.conf`. And don't forget to change the directory to yours.
   ```
   <Directory "/var/www/share/upload">
     php_flag engine off
