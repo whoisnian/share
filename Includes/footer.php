@@ -1,5 +1,6 @@
 <?php
 echo '
+<!------------footer beginning------------->
 			<br/>
 			<div class="push"></div>
 		</div>
