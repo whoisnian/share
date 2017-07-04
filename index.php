@@ -60,7 +60,7 @@ if(is_dir($dir)){
 			echo '	
 			<br/>
 			<div>
-                <table class="card">';
+                <table class="table">';
 			krsort($files);
 			foreach($files as $file){
 				$Link = '<a class="maxlen" href="upload/'.$file.'">'.$file.'</a>';
@@ -80,10 +80,10 @@ if(is_dir($dir)){
 					</form>';
 				echo'
 					<tr>
-						<td style="border-bottom:1px solid black">'.$Size.'<br/>'.$Link.'</td>
-						<td style="border-bottom:1px solid black;text-align:center">'.$Time.'</td>
-						<td style="border-bottom:1px solid black;text-align:center">'.$Download.'</td>
-						<td style="border-bottom:1px solid black;text-align:center">'.$Delete.'</td>
+						<td>'.$Size.'<br/>'.$Link.'</td>
+						<td class="table-center">'.$Time.'</td>
+						<td class="table-center">'.$Download.'</td>
+						<td class="table-center">'.$Delete.'</td>
 					</tr>';
 			}
 			echo '
