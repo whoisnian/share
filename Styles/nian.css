@@ -250,37 +250,33 @@ a {
 .table {
 	font-size: 11px;
 	width: 100%;
-	border-collapse: separate;
-    border-spacing: 5px;
 	margin: 0 auto;
 }
 @media (min-width: 40em) {
 	.table {
 		font-size: 16px;
 		width: 60%;
-		border-spacing: 10px;
 	}
 }
 
-.table a{
+.table a {
 	color: #555555;
     text-decoration: none;
 }
 
-.table a:hover{
+.table a:hover {
 	color: #FFFFFF;
 	text-decoration: underline;
 }
 
-.table td{
+.table td {
+	text-align: center;
 	border-bottom: 1px solid black;
+	border-top: 1px solid black;
 }
 
-.table-center {
-	text-align: center;
-}
-.table-right {
-	text-align: right;
+.table tr:hover {
+	background-color: #999999;
 }
 
 /***********card***********/
