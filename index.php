@@ -4,31 +4,32 @@ include 'Includes/header.php';
 
 $fileErr = '文件大小限制：'.min(ini_get('upload_max_filesize'), ini_get('post_max_size'));
 if(isset($_POST["submit"])){
-	if($_POST["submit"] == "upload"){
-        if(allow_file_type($_FILES["file"]["type"])){
-            if($_FILES["file"]["error"] > 0){
-                $fileErr = 'Error Code: '.$_FILES["file"]["error"];
-            }
-            else{
-                if(file_exists('upload/'.$_FILES["file"]["name"])){
-                    $fileErr = $_FILES["file"]["name"].' already exists.';
+    if($_POST["submit"] == "upload"){
+        for($i = 0;$i < count($_FILES["file"]["name"]);$i++){
+            if(allow_file_type($_FILES["file"]["type"][$i])){
+                if($_FILES["file"]["error"][$i] > 0){
+                    $fileErr = 'Error Code: '.$_FILES["file"]["error"][$i];
                 }
                 else{
-                    $Name = $_FILES["file"]["name"];
-                    $Type = $_FILES["file"]["type"];
-                    $Size = $_FILES["file"]["size"];
-                    date_default_timezone_set("Asia/Shanghai");
-                    $Time = date("Y-m-d H:i:s");
-					move_uploaded_file($_FILES["file"]["tmp_name"],'upload/'.$_FILES["file"]["name"]);
-					echo '<meta http-equiv="refresh" content="0;url=index.php">';
+                    if(file_exists('upload/'.$_FILES["file"]["name"][$i])){
+                        $fileErr = $_FILES["file"]["name"][$i].' already exists.';
+                    }
+                    else{
+                        $Name = $_FILES["file"]["name"][$i];
+                        $Type = $_FILES["file"]["type"][$i];
+                        $Size = $_FILES["file"]["size"][$i];
+                        date_default_timezone_set("Asia/Shanghai");
+                        $Time = date("Y-m-d H:i:s");
+					    move_uploaded_file($_FILES["file"]["tmp_name"][$i], 'upload/'.$_FILES["file"]["name"][$i]);
+                    }
                 }
             }
-        }
-        else{
-            $fileErr =  'Invalid file type.';
-        }
-	}
-	else if($_POST["submit"] == "delete"){
+            else{
+                $fileErr =  'Invalid file type.';
+            }
+	    }
+    }
+    else if($_POST["submit"] == "delete"){
         $Name = 'upload/'.$_POST['name'];
         unlink($Name);
         echo '<meta http-equiv="refresh" content="0;url=index.php">';
@@ -43,7 +44,7 @@ echo '
 		<form class="form-card" action="index.php" method="post" enctype="multipart/form-data">
 			<span class="error">'.$fileErr.'</span>
 			<br/><br/>
-			<input class="file" id="file" type="file" name="file">
+			<input class="file" id="file" type="file" name="file[]" multiple>
 			<br/><br/>
 			<label class="button">上传<input style="display:none" type="submit" name="submit" value="upload"></label>
 		</form>';
@@ -54,15 +55,15 @@ if(is_dir($dir)){
 		while(($file = readdir($dh))){
 			if($file == "."||$file == ".."||$file == "index.html")continue;
 			$key = filemtime("upload/$file");
-			$files[$key] = $file; 
+			$files[$file] = $key; 
 		}
 		if(!empty($files)){
 			echo '	
 			<br/>
 			<div>
                 <table class="table">';
-			krsort($files);
-			foreach($files as $file){
+			arsort($files);
+			foreach($files as $file => $key){
 				$Link = '<a class="maxlen" href="upload/'.$file.'">'.$file.'</a>';
 				$Size = filesize("upload/$file");
 				$SizeKiB = round($Size / 1024, 2);
