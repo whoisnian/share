@@ -83,24 +83,7 @@ a {
 }
 
 .file {
-    background-color: #FFFFFF;
-    border-width: 1px;
-    border-color: #999999;
-    border-style: solid;
-    display: inline-block;
-    width: 200px;
-    cursor: pointer;
-    outline: none;
-}
-@media (min-width: 40em) {
-    .file {
-        font-size: 20px;
-        width: 300px;
-    }
-}
-
-.file:hover{
-    background-color: #CCCCCC;
+    display: none;
 }
 
 .button{

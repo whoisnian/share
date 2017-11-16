@@ -44,8 +44,7 @@ echo '
         <form class="form-card" action="index.php" method="post" enctype="multipart/form-data">
             <span class="error">'.$fileErr.'</span>
             <br/><br/>
-            <input class="file" id="file" type="file" name="file[]" multiple>
-            <br/><br/>
+            <label class="button">点击选择文件<input class="file" id="file" type="file" name="file[]" multiple></label>
             <label class="button">上传<input style="display:none" type="submit" name="submit" value="upload"></label>
         </form>';
 
