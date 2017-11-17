@@ -17,9 +17,6 @@ echo '
         <div class="wrapper">
             <div class="menu">
                 <a class="menu-title" href="/">Share</a>
-                <nav class="other">
-                    <a>IP : '.$_SERVER['REMOTE_ADDR'].'</a>
-                </nav>
             </div>
 <!------------header ending------------->';
 ?>
