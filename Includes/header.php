@@ -8,7 +8,7 @@ echo '
         <meta name="mobile-web-app-capable" content="yes">
         <title>Share</title>
 
-        <link rel="shortcut icon" href="/favicon.png">
+        <link rel="shortcut icon" href="/favicon.ico">
         <link rel="icon" sizes="192x192" href="/icon.png">
         <link rel="stylesheet" type="text/css" href="/Styles/nian.css">
     </head>
