@@ -30,7 +30,7 @@ if(isset($_POST["submit"])){
         }
     }
     else if($_POST["submit"] == "delete"){
-        $Name = 'upload/'.$_POST['name'];
+        $Name = 'upload/'.basename($_POST['name']);
         unlink($Name);
         echo '<meta http-equiv="refresh" content="0;url=index.php">';
     }
